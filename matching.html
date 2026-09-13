@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matching Engine | HemoPulse ERP</title>
+  <meta name="theme-color" content="#EF233C">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩸</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-body">
+
+  <!-- Modern Unified Glass Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <!-- Left: Brand & University Accreditation -->
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-logo-pulse"><i class="fa-solid fa-droplet"></i></div>
+        <div class="brand-info-col">
+          <div class="brand-name-row">
+            <span class="brand-title">HEMO<span class="text-primary">PULSE</span></span>
+            <span class="badge-erp-tag">ERP v1.0</span>
+          </div>
+          <span class="brand-meta-sub"><i class="fa-solid fa-graduation-cap"></i> Canadian University of Bangladesh &bull; CSE 1101</span>
+        </div>
+      </a>
+
+      <!-- Center: Segmented Navigation Pills -->
+      <nav class="header-nav-pills">
+        <a href="home.html" class="nav-pill" title="Public Animated Website"><i class="fa-solid fa-globe text-primary"></i> <span>Public Site</span></a>
+        <a href="dashboard.html" class="nav-pill"><i class="fa-solid fa-chart-pie"></i> <span>Dashboard</span></a>
+        <a href="donors.html" class="nav-pill"><i class="fa-solid fa-address-book"></i> <span>Donors</span> <span class="pill-counter" id="navCount">0</span></a>
+        <a href="matching.html" class="nav-pill active"><i class="fa-solid fa-heart-pulse"></i> <span>Matching</span></a>
+        <a href="register.html" class="nav-pill"><i class="fa-solid fa-id-card"></i> <span>Register</span></a>
+        <a href="logic.html" class="nav-pill"><i class="fa-solid fa-code"></i> <span>CSE 1101</span></a>
+        <a href="docs.html" class="nav-pill"><i class="fa-solid fa-file-lines"></i> <span>Docs</span></a>
+      </nav>
+
+      <!-- Right: User Profile, Theme & Logout -->
+      <div class="header-right-actions">
+        <div class="user-profile-badge">
+          <div class="user-avatar-circle">
+            <i class="fa-solid fa-user-shield"></i>
+            <span class="user-online-dot"></span>
+          </div>
+          <div class="user-name-col">
+            <strong id="headerUserName">Musa</strong>
+            <span class="user-role-label" id="headerUserRole">Administrator</span>
+          </div>
+        </div>
+
+        <button id="themeToggleBtn" class="btn-action-icon" title="Toggle Light / Dark Mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <button onclick="logout()" class="btn-action-logout" title="Logout from ERP">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <div class="mb-3">
+      <h2><i class="fa-solid fa-heart-pulse text-primary"></i> Transfusion Compatibility & Matching Engine</h2>
+      <p class="text-muted text-sm">Linear iteration search combined with biological donor-recipient compatibility matrices.</p>
+    </div>
+
+    <!-- Search Form Panel -->
+    <div class="glass-panel mb-4">
+      <form id="matchingForm" class="grid-matching" onsubmit="handleMatchingSubmit(event)">
+        <div class="form-group">
+          <label>Recipient Blood Group:</label>
+          <select id="matchGroup" class="form-select" onchange="updateCompatibilityBadges()">
+            <option value="A+">A+ (A Positive)</option>
+            <option value="A-">A- (A Negative)</option>
+            <option value="B+">B+ (B Positive)</option>
+            <option value="B-">B- (B Negative)</option>
+            <option value="AB+">AB+ (Universal Recipient)</option>
+            <option value="AB-">AB- (AB Negative)</option>
+            <option value="O+" selected>O+ (O Positive)</option>
+            <option value="O-">O- (Universal Donor)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Algorithm Matching Strategy:</label>
+          <div class="radio-group">
+            <label><input type="radio" name="strategy" value="comp" checked id="stratComp"> Biologically Compatible Types</label>
+            <label><input type="radio" name="strategy" value="exact" id="stratExact"> Strict Exact Blood Match Only</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="check-wrap">
+            <input type="checkbox" id="eligibleOnly" checked>
+            <span>Eligible Donors Only (&ge; 120 Days)</span>
+          </label>
+          <input type="text" id="cityFilter" placeholder="Filter by City (e.g. Dhaka)" class="form-input-sm mt-2">
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn-primary-gradient" style="width: 100%; justify-content: center; padding: 0.75rem 1rem;">
+            <i class="fa-solid fa-magnifying-glass"></i> Run Match Search
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-3 pt-3" style="border-top: 1px solid var(--border-glass);">
+        <span class="text-xs font-bold text-muted">Transfusion Matrix Rule for <span id="targetGroupLabel" class="text-primary font-bold">O+</span>:</span>
+        <div id="compatibleBadgesList" class="flex-gap flex-wrap mt-2"></div>
+      </div>
+    </div>
+
+    <!-- Results Header -->
+    <div class="results-header flex-between mb-3">
+      <h3>Matching Donor Candidates (<span id="matchCount" class="text-primary">0</span>)</h3>
+      <span id="execTime" class="badge-code"><i class="fa-solid fa-bolt"></i> Ready</span>
+    </div>
+
+    <div class="donor-cards-grid" id="matchResultsGrid"></div>
+    <div id="noMatchFound" class="hidden glass-panel" style="text-align:center; padding:3rem 1.5rem; color:var(--text-muted);">
+      <i class="fa-solid fa-triangle-exclamation" style="font-size:2.5rem; color:var(--amber); margin-bottom:0.75rem; display:block;"></i>
+      <strong>No compatible donors found for the specified criteria.</strong>
+      <p class="text-xs text-muted mt-1">Try unchecking 'Eligible Donors Only' or clearing the city filter.</p>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    HemoPulse ERP &bull; Prepared by <strong>Musa (MD. MUSA ALOM MIM)</strong> &bull; Canadian University of Bangladesh &bull; CSE 1101
+  </footer>
+
+  <div id="toastContainer" class="toast-box"></div>
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const grp = urlParams.get("group");
+      if (grp) document.getElementById("matchGroup").value = grp;
+
+      document.getElementById("navCount").textContent = donorDatabase.length;
+      updateCompatibilityBadges();
+      runMatching();
+    });
+
+    function updateCompatibilityBadges() {
+      const grp = document.getElementById("matchGroup").value;
+      document.getElementById("targetGroupLabel").textContent = grp;
+      const comp = getCompatibleBloodGroups(grp);
+      document.getElementById("compatibleBadgesList").innerHTML = comp.map(g => `
+        <span class="compat-chip active"><i class="fa-solid fa-droplet text-primary"></i> Can Receive from: <strong>${g}</strong></span>
+      `).join("");
+    }
+
+    function handleMatchingSubmit(e) {
+      e.preventDefault();
+      runMatching();
+    }
+
+    function runMatching() {
+      const group = document.getElementById("matchGroup").value;
+      const isComp = document.getElementById("stratComp").checked;
+      const elgOnly = document.getElementById("eligibleOnly").checked;
+      const loc = document.getElementById("cityFilter").value.trim();
+
+      const startTime = performance.now();
+
+      const results = searchDonor({
+        requiredGroup: group,
+        isCompatible: isComp,
+        eligibleOnly: elgOnly,
+        location: loc
+      });
+
+      const duration = (performance.now() - startTime).toFixed(3);
+      document.getElementById("execTime").innerHTML = `<i class="fa-solid fa-bolt text-primary"></i> Algorithm: ${duration} ms (Iterated ${donorDatabase.length} records)`;
+      document.getElementById("matchCount").textContent = results.length;
+
+      const container = document.getElementById("matchResultsGrid");
+      const noMatch = document.getElementById("noMatchFound");
+
+      if (results.length === 0) {
+        container.innerHTML = "";
+        noMatch.classList.remove("hidden");
+        return;
+      }
+
+      noMatch.classList.add("hidden");
+      container.innerHTML = results.map(d => {
+        const elg = checkEligibility(d.lastDonation);
+        const initial = d.name ? d.name.charAt(0).toUpperCase() : "D";
+        const isExact = d.bloodGroup === group;
+        return `
+          <div class="match-card">
+            <div class="match-card-top">
+              <div class="donor-row-cell">
+                <div class="donor-avatar-letter">${initial}</div>
+                <div>
+                  <strong style="font-size:1rem;">${d.name}</strong><br>
+                  <span class="text-xs text-muted">${d.gender || 'Donor'}, ${d.age || '25'} yrs</span>
+                </div>
+              </div>
+              <span class="donor-group-badge" style="font-size:1rem; padding:0.3rem 0.75rem;">${d.bloodGroup}</span>
+            </div>
+
+            <div style="background:var(--bg-subtle); padding:0.65rem 0.85rem; border-radius:var(--radius-sm); font-size:0.82rem; margin:0.35rem 0;">
+              <div class="flex-between">
+                <span><i class="fa-solid fa-location-dot text-primary"></i> Location:</span>
+                <strong>${d.city}</strong>
+              </div>
+              <div class="flex-between mt-1">
+                <span><i class="fa-solid fa-dna text-primary"></i> Match Type:</span>
+                <strong class="${isExact ? 'text-primary' : 'text-success'}">${isExact ? 'Exact Blood Match' : 'Universal Compatible'}</strong>
+              </div>
+              <div class="flex-between mt-1">
+                <span><i class="fa-solid fa-clock-rotate-left"></i> Transfusion:</span>
+                ${elg.isEligible ? '<strong class="text-success">Eligible Now</strong>' : `<strong class="text-warning">${elg.daysRemaining}d resting</strong>`}
+              </div>
+            </div>
+
+            <div class="flex-between mt-1">
+              <a href="tel:${d.phone}" class="btn-emergency-glow" style="flex:1; justify-content:center; text-decoration:none; padding:0.6rem;">
+                <i class="fa-solid fa-phone"></i> Call ${d.phone}
+              </a>
+              <button onclick="copyToClipboard('${d.phone}')" class="btn-action-icon ml-2" style="width:38px; height:38px; margin-left:0.5rem;" title="Copy Phone">
+                <i class="fa-solid fa-copy"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+  </script>
+</body>
+</html>

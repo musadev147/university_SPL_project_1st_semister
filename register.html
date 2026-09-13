@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Donor | HemoPulse ERP</title>
+  <meta name="theme-color" content="#EF233C">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩸</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-body">
+
+  <!-- Modern Unified Glass Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <!-- Left: Brand & University Accreditation -->
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-logo-pulse"><i class="fa-solid fa-droplet"></i></div>
+        <div class="brand-info-col">
+          <div class="brand-name-row">
+            <span class="brand-title">HEMO<span class="text-primary">PULSE</span></span>
+            <span class="badge-erp-tag">ERP v1.0</span>
+          </div>
+          <span class="brand-meta-sub"><i class="fa-solid fa-graduation-cap"></i> Canadian University of Bangladesh &bull; CSE 1101</span>
+        </div>
+      </a>
+
+      <!-- Center: Segmented Navigation Pills -->
+      <nav class="header-nav-pills">
+        <a href="home.html" class="nav-pill" title="Public Animated Website"><i class="fa-solid fa-globe text-primary"></i> <span>Public Site</span></a>
+        <a href="dashboard.html" class="nav-pill"><i class="fa-solid fa-chart-pie"></i> <span>Dashboard</span></a>
+        <a href="donors.html" class="nav-pill"><i class="fa-solid fa-address-book"></i> <span>Donors</span> <span class="pill-counter" id="navCount">0</span></a>
+        <a href="matching.html" class="nav-pill"><i class="fa-solid fa-heart-pulse"></i> <span>Matching</span></a>
+        <a href="register.html" class="nav-pill active"><i class="fa-solid fa-id-card"></i> <span>Register</span></a>
+        <a href="logic.html" class="nav-pill"><i class="fa-solid fa-code"></i> <span>CSE 1101</span></a>
+        <a href="docs.html" class="nav-pill"><i class="fa-solid fa-file-lines"></i> <span>Docs</span></a>
+      </nav>
+
+      <!-- Right: User Profile, Theme & Logout -->
+      <div class="header-right-actions">
+        <div class="user-profile-badge">
+          <div class="user-avatar-circle">
+            <i class="fa-solid fa-user-shield"></i>
+            <span class="user-online-dot"></span>
+          </div>
+          <div class="user-name-col">
+            <strong id="headerUserName">Musa</strong>
+            <span class="user-role-label" id="headerUserRole">Administrator</span>
+          </div>
+        </div>
+
+        <button id="themeToggleBtn" class="btn-action-icon" title="Toggle Light / Dark Mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <button onclick="logout()" class="btn-action-logout" title="Logout from ERP">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <div class="mb-3">
+      <h2><i class="fa-solid fa-id-card text-primary"></i> Donor Registration Module</h2>
+      <p class="text-muted text-sm">Enroll new donor records into the <code>donorDatabase[]</code> array via <code>.push()</code> operations.</p>
+    </div>
+
+    <div class="grid-2col">
+      <!-- Registration Form -->
+      <div class="glass-panel">
+        <h4 class="mb-3"><i class="fa-solid fa-user-pen text-primary"></i> New Donor Profile Enrollment</h4>
+        <form id="regForm" onsubmit="handleRegistration(event)">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Full Legal Name *</label>
+              <input type="text" id="regName" class="form-input" placeholder="e.g. Shakil Ahmed" required oninput="updateLiveMathPreview()">
+            </div>
+            <div class="form-group">
+              <label>Blood Group *</label>
+              <select id="regGroup" class="form-select" required onchange="updateLiveMathPreview()">
+                <option value="" disabled selected>Choose Blood Group</option>
+                <option value="A+">A+ (A Positive)</option>
+                <option value="A-">A- (A Negative)</option>
+                <option value="B+">B+ (B Positive)</option>
+                <option value="B-">B- (B Negative)</option>
+                <option value="AB+">AB+ (AB Positive)</option>
+                <option value="AB-">AB- (AB Negative)</option>
+                <option value="O+">O+ (O Positive)</option>
+                <option value="O-">O- (Universal Donor)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Contact Phone (Bangladesh) *</label>
+              <input type="tel" id="regPhone" class="form-input" placeholder="01712345678" required oninput="updateLiveMathPreview()">
+            </div>
+            <div class="form-group">
+              <label>Last Blood Donation Date *</label>
+              <input type="date" id="regDate" class="form-input" required oninput="updateLiveMathPreview()">
+            </div>
+          </div>
+
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>City / Location *</label>
+              <input type="text" id="regCity" class="form-input" placeholder="e.g. Dhaka (Mirpur)" required oninput="updateLiveMathPreview()">
+            </div>
+            <div class="form-group">
+              <label>Age (18 - 65) *</label>
+              <input type="number" id="regAge" min="18" max="65" value="24" class="form-input" required oninput="updateLiveMathPreview()">
+            </div>
+            <div class="form-group">
+              <label>Gender</label>
+              <select id="regGender" class="form-select" onchange="updateLiveMathPreview()">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex-between mt-4">
+            <button type="button" onclick="fillSampleData()" class="btn-secondary">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Auto Fill Sample
+            </button>
+            <button type="submit" class="btn-primary-gradient">
+              <i class="fa-solid fa-user-plus"></i> Save Donor Record
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Live Math Calculation Inspector -->
+      <div class="glass-panel">
+        <h4><i class="fa-solid fa-calculator text-primary"></i> Live Eligibility Math Inspector</h4>
+        <p class="text-xs text-muted mb-3">Structured programming evaluation of <code>checkEligibility(lastDonation)</code>:</p>
+        
+        <div class="calc-box">
+          <div class="calc-item">
+            <span>Days Elapsed Since Donation (&Delta;t):</span>
+            <strong id="previewDays" class="text-primary font-bold">0 Days</strong>
+          </div>
+          <div class="calc-item">
+            <span>Required Cooldown Threshold:</span>
+            <strong>120 Days (4 Calendar Months)</strong>
+          </div>
+          <div class="calc-item border-top">
+            <span>Transfusion Eligibility Status:</span>
+            <span id="previewBadge" class="status-badge status-ineligible">Awaiting Date Selection</span>
+          </div>
+        </div>
+
+        <div class="code-preview-box mt-3">
+          <span class="text-xs text-muted font-bold"><i class="fa-solid fa-code text-primary"></i> Generated In-Memory Object:</span>
+          <pre><code id="previewObjectCode">{}</code></pre>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    HemoPulse ERP &bull; Prepared by <strong>Musa (MD. MUSA ALOM MIM)</strong> &bull; Canadian University of Bangladesh &bull; CSE 1101
+  </footer>
+
+  <div id="toastContainer" class="toast-box"></div>
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("navCount").textContent = donorDatabase.length;
+      
+      // Default to 150 days ago for easy demo
+      const d = new Date();
+      d.setDate(d.getDate() - 150);
+      document.getElementById("regDate").value = d.toISOString().split("T")[0];
+      
+      updateLiveMathPreview();
+    });
+
+    function fillSampleData() {
+      const names = ["Tanzim Hasan", "Nafisa Kamal", "Sabbir Ahmed", "Sumaiya Rahman"];
+      const groups = ["O+", "A+", "B+", "O-", "AB+"];
+      const cities = ["Dhaka (Uttara)", "Chittagong (Agrabad)", "Sylhet (Zindabazar)", "Khulna (Boyra)"];
+      
+      const rName = names[Math.floor(Math.random() * names.length)];
+      const rGrp = groups[Math.floor(Math.random() * groups.length)];
+      const rCity = cities[Math.floor(Math.random() * cities.length)];
+      
+      document.getElementById("regName").value = rName;
+      document.getElementById("regGroup").value = rGrp;
+      document.getElementById("regPhone").value = "017" + Math.floor(10000000 + Math.random() * 90000000);
+      document.getElementById("regCity").value = rCity;
+      document.getElementById("regAge").value = 22 + Math.floor(Math.random() * 15);
+      
+      updateLiveMathPreview();
+      showToast("Sample donor credentials loaded!", "success");
+    }
+
+    function updateLiveMathPreview() {
+      const dateVal = document.getElementById("regDate").value;
+      const nameVal = document.getElementById("regName").value || "Donor Name";
+      const grpVal = document.getElementById("regGroup").value || "Pending";
+      const phoneVal = document.getElementById("regPhone").value || "017XXXXXXXX";
+      const cityVal = document.getElementById("regCity").value || "Dhaka";
+      const ageVal = document.getElementById("regAge").value || 25;
+      const genderVal = document.getElementById("regGender").value || "Male";
+
+      let elg = { daysElapsed: 0, daysRemaining: 120, isEligible: false };
+      if (dateVal) {
+        elg = checkEligibility(dateVal);
+        document.getElementById("previewDays").textContent = `${elg.daysElapsed} Days`;
+        if (elg.isEligible) {
+          document.getElementById("previewBadge").className = "status-badge status-eligible";
+          document.getElementById("previewBadge").innerHTML = `<i class="fa-solid fa-circle-check"></i> Eligible (Cleared)`;
+        } else {
+          document.getElementById("previewBadge").className = "status-badge status-ineligible";
+          document.getElementById("previewBadge").innerHTML = `<i class="fa-solid fa-hourglass-half"></i> ${elg.daysRemaining} Days Remaining`;
+        }
+      }
+
+      const sampleObj = {
+        id: donorDatabase.length + 1,
+        name: nameVal,
+        bloodGroup: grpVal,
+        phone: phoneVal,
+        lastDonation: dateVal,
+        city: cityVal,
+        age: parseInt(ageVal),
+        gender: genderVal,
+        isEligibleNow: elg.isEligible
+      };
+
+      document.getElementById("previewObjectCode").textContent = JSON.stringify(sampleObj, null, 2);
+    }
+
+    function handleRegistration(e) {
+      e.preventDefault();
+      const newRecord = {
+        name: document.getElementById("regName").value.trim(),
+        bloodGroup: document.getElementById("regGroup").value,
+        phone: document.getElementById("regPhone").value.trim(),
+        lastDonation: document.getElementById("regDate").value,
+        city: document.getElementById("regCity").value.trim(),
+        age: parseInt(document.getElementById("regAge").value),
+        gender: document.getElementById("regGender").value
+      };
+
+      registerDonor(newRecord);
+      document.getElementById("navCount").textContent = donorDatabase.length;
+      showToast(`Donor ${newRecord.name} (${newRecord.bloodGroup}) registered successfully!`, "success");
+
+      setTimeout(() => {
+        window.location.href = "donors.html";
+      }, 900);
+    }
+  </script>
+</body>
+</html>

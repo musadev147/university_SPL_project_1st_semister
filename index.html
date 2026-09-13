@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login &bull; HemoPulse ERP | Blood Donor Management System</title>
+  <meta name="description" content="HemoPulse ERP Command Hub Login. Role-based access control for Blood Bank Administrators, Medical Officers, and Volunteer Dispatchers.">
+  <meta name="theme-color" content="#EF233C">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩸</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page-body">
+
+  <!-- Ambient Animated Lighting -->
+  <div class="auth-ambient-glows">
+    <div class="ambient-orb orb-red"></div>
+    <div class="ambient-orb orb-emerald"></div>
+    <div class="ambient-orb orb-indigo"></div>
+    <div class="ambient-grid-overlay"></div>
+  </div>
+
+  <!-- Top Quick Bar -->
+  <header class="auth-top-bar">
+    <div class="auth-top-brand">
+      <a href="home.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:0.6rem;">
+        <div class="brand-pulse-badge">
+          <i class="fa-solid fa-droplet"></i>
+        </div>
+        <span>HEMO<strong class="text-primary">PULSE</strong> <span class="badge-erp-sm">ERP v1.0</span></span>
+      </a>
+    </div>
+
+    <div class="auth-top-actions">
+      <a href="home.html" class="btn-theme-pill" style="text-decoration:none;" title="Visit Public Animated Website">
+        <i class="fa-solid fa-globe text-primary"></i>
+        <span>Public Website</span>
+      </a>
+      <div class="system-status-pill">
+        <span class="live-dot"></span>
+        <span>CSE 1101 Online</span>
+      </div>
+      <button id="themeToggleBtn" class="btn-theme-pill" title="Toggle Light / Dark Mode">
+        <i class="fa-solid fa-moon"></i>
+        <span>Theme</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Luxury Split-Stage Container -->
+  <div class="auth-stage-container">
+    <div class="auth-stage-grid">
+      
+      <!-- ============================================================ -->
+      <!-- LEFT HERO SHOWCASE PANEL -->
+      <!-- ============================================================ -->
+      <div class="auth-hero-panel">
+        <div class="hero-badge-tag">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span>CSE 1101 Structured Programming Language</span>
+        </div>
+
+        <h1 class="hero-main-title">
+          Smart Blood Donor <br>
+          <span class="gradient-text">Management ERP</span>
+        </h1>
+
+        <p class="hero-description">
+          An enterprise-grade, lightweight web system demonstrating structured JavaScript algorithms, in-memory arrays of objects, and biological compatibility matrices.
+        </p>
+
+        <!-- Animated ECG Heartbeat Wave SVG -->
+        <div class="ecg-pulse-container">
+          <div class="ecg-label">
+            <i class="fa-solid fa-heart-pulse text-primary"></i> Live Resting Cooldown Engine (120 Days)
+          </div>
+          <svg class="ecg-svg" viewBox="0 0 500 80">
+            <path class="ecg-path-bg" d="M 0,40 L 100,40 L 120,40 L 135,15 L 150,70 L 165,30 L 180,48 L 195,40 L 300,40 L 315,15 L 330,70 L 345,30 L 360,48 L 375,40 L 500,40" />
+            <path class="ecg-path-animated" d="M 0,40 L 100,40 L 120,40 L 135,15 L 150,70 L 165,30 L 180,48 L 195,40 L 300,40 L 315,15 L 330,70 L 345,30 L 360,48 L 375,40 L 500,40" />
+          </svg>
+        </div>
+
+        <!-- Interactive Blood Group Compatibility Showcase -->
+        <div class="hero-compatibility-box">
+          <div class="compat-header">
+            <span><i class="fa-solid fa-dna text-primary"></i> 8 Blood Group Matrices Evaluated:</span>
+            <span class="badge-mini">Live Arrays</span>
+          </div>
+          <div class="compat-chips-row">
+            <span class="compat-chip active" title="Universal Donor"><i class="fa-solid fa-droplet"></i> O- (Universal)</span>
+            <span class="compat-chip" title="Universal Recipient">AB+ (Recipient)</span>
+            <span class="compat-chip">A+</span>
+            <span class="compat-chip">B+</span>
+            <span class="compat-chip">O+</span>
+            <span class="compat-chip">A-</span>
+            <span class="compat-chip">B-</span>
+            <span class="compat-chip">AB-</span>
+          </div>
+        </div>
+
+        <!-- Academic Accreditation Footer Badge -->
+        <div class="hero-academic-card">
+          <div class="academic-avatar">
+            <i class="fa-solid fa-user-graduate"></i>
+          </div>
+          <div class="academic-meta">
+            <div class="author-row">
+              <strong>Musa (MD. MUSA ALOM MIM)</strong>
+              <span class="verified-badge"><i class="fa-solid fa-check"></i> Verified</span>
+            </div>
+            <p>Canadian University of Bangladesh &bull; Department of CSE</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- RIGHT LOGIN PORTAL CARD -->
+      <!-- ============================================================ -->
+      <div class="auth-card-panel">
+        <div class="login-card-inner glass-card-luxury">
+          
+          <!-- Card Header -->
+          <div class="login-header">
+            <div class="login-icon-ring">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h2>Portal Authentication</h2>
+            <p>Access central donor databases & ERP modules</p>
+          </div>
+
+          <!-- Role Selector Pills -->
+          <div class="role-selector-tab">
+            <button type="button" class="role-tab-btn active" onclick="selectRolePreset('musa', 'Admin (Musa)', this)">
+              <i class="fa-solid fa-user-gear"></i> Admin
+            </button>
+            <button type="button" class="role-tab-btn" onclick="selectRolePreset('doctor', 'Medical Officer', this)">
+              <i class="fa-solid fa-user-doctor"></i> Medical
+            </button>
+            <button type="button" class="role-tab-btn" onclick="selectRolePreset('volunteer', 'Volunteer Staff', this)">
+              <i class="fa-solid fa-hand-holding-heart"></i> Staff
+            </button>
+          </div>
+
+          <!-- Form -->
+          <form id="loginForm" class="login-form-luxury" onsubmit="handleLoginPageSubmit(event)">
+            <div class="floating-input-group">
+              <label for="loginUser">Username or ID</label>
+              <div class="input-luxury-wrap">
+                <i class="fa-solid fa-circle-user input-lead-icon"></i>
+                <input type="text" id="loginUser" placeholder="Enter username (e.g. musa)" value="musa" required autocomplete="username">
+              </div>
+            </div>
+
+            <div class="floating-input-group">
+              <div class="label-row-between">
+                <label for="loginPass">Password</label>
+                <span class="text-xs text-muted">Demo: <code>123456</code></span>
+              </div>
+              <div class="input-luxury-wrap">
+                <i class="fa-solid fa-key input-lead-icon"></i>
+                <input type="password" id="loginPass" placeholder="Enter password" value="123456" required autocomplete="current-password">
+                <button type="button" class="btn-reveal-pass" onclick="togglePassVisibility()" aria-label="Toggle password view">
+                  <i class="fa-regular fa-eye" id="eyeIcon"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="login-options-row">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="rememberMe" checked>
+                <span class="checkmark"></span>
+                <span class="label-text">Remember session</span>
+              </label>
+              <span class="encryption-tag"><i class="fa-solid fa-lock"></i> 256-Bit Encrypted</span>
+            </div>
+
+            <button type="submit" class="btn-luxury-submit">
+              <span>Enter ERP Workspace</span>
+              <i class="fa-solid fa-arrow-right-long"></i>
+            </button>
+          </form>
+
+          <!-- 1-Click Fast Demo Credentials Section -->
+          <div class="fast-demo-section">
+            <div class="divider-text"><span>Or Instant 1-Click Access</span></div>
+            <div class="fast-demo-grid">
+              <div class="demo-card-item" onclick="quickLogin('Musa (MD. MUSA ALOM MIM)', 'Administrator & Student')">
+                <div class="demo-avatar bg-red"><i class="fa-solid fa-user-shield"></i></div>
+                <div class="demo-info">
+                  <strong>Musa (Admin)</strong>
+                  <span>Full System Access</span>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <div class="demo-card-item" onclick="quickLogin('Dr. Farhana Akter', 'Medical Officer')">
+                <div class="demo-avatar bg-emerald"><i class="fa-solid fa-stethoscope"></i></div>
+                <div class="demo-info">
+                  <strong>Dr. Farhana</strong>
+                  <span>Medical Officer</span>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Box -->
+  <div id="toastContainer" class="toast-box"></div>
+
+  <script src="app.js"></script>
+  <script>
+    // Redirect to dashboard if session already active
+    if (localStorage.getItem("hemopulse_session")) {
+      window.location.href = "dashboard.html";
+    }
+
+    function togglePassVisibility() {
+      const pass = document.getElementById("loginPass");
+      const icon = document.getElementById("eyeIcon");
+      if (pass.type === "password") {
+        pass.type = "text";
+        icon.className = "fa-regular fa-eye-slash";
+      } else {
+        pass.type = "password";
+        icon.className = "fa-regular fa-eye";
+      }
+    }
+
+    function selectRolePreset(userKey, roleLabel, btnElement) {
+      document.querySelectorAll(".role-tab-btn").forEach(b => b.classList.remove("active"));
+      if (btnElement) btnElement.classList.add("active");
+      
+      document.getElementById("loginUser").value = userKey;
+      document.getElementById("loginPass").value = "123456";
+    }
+
+    function handleLoginPageSubmit(e) {
+      e.preventDefault();
+      const user = document.getElementById("loginUser").value.trim() || "Musa";
+      const name = (user.toLowerCase() === "musa" || user.toLowerCase() === "admin") 
+        ? "Musa (MD. MUSA ALOM MIM)" 
+        : user.toUpperCase();
+      quickLogin(name, "Administrator");
+    }
+
+    function quickLogin(name, role) {
+      localStorage.setItem("hemopulse_session", JSON.stringify({ name, role }));
+      showToast(`Welcome ${name}! Launching HemoPulse ERP...`, "success");
+      setTimeout(() => { window.location.href = "dashboard.html"; }, 500);
+    }
+  </script>
+</body>
+</html>

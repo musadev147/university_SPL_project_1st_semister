@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | HemoPulse ERP</title>
+  <meta name="theme-color" content="#EF233C">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩸</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-body">
+
+  <!-- Modern Unified Glass Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <!-- Left: Brand & University Accreditation -->
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-logo-pulse"><i class="fa-solid fa-droplet"></i></div>
+        <div class="brand-info-col">
+          <div class="brand-name-row">
+            <span class="brand-title">HEMO<span class="text-primary">PULSE</span></span>
+            <span class="badge-erp-tag">ERP v1.0</span>
+          </div>
+          <span class="brand-meta-sub"><i class="fa-solid fa-graduation-cap"></i> Canadian University of Bangladesh &bull; CSE 1101</span>
+        </div>
+      </a>
+
+      <!-- Center: Segmented Navigation Pills -->
+      <nav class="header-nav-pills">
+        <a href="home.html" class="nav-pill" title="Public Animated Website"><i class="fa-solid fa-globe text-primary"></i> <span>Public Site</span></a>
+        <a href="dashboard.html" class="nav-pill active"><i class="fa-solid fa-chart-pie"></i> <span>Dashboard</span></a>
+        <a href="donors.html" class="nav-pill"><i class="fa-solid fa-address-book"></i> <span>Donors</span> <span class="pill-counter" id="navCount">0</span></a>
+        <a href="matching.html" class="nav-pill"><i class="fa-solid fa-heart-pulse"></i> <span>Matching</span></a>
+        <a href="register.html" class="nav-pill"><i class="fa-solid fa-id-card"></i> <span>Register</span></a>
+        <a href="logic.html" class="nav-pill"><i class="fa-solid fa-code"></i> <span>CSE 1101</span></a>
+        <a href="docs.html" class="nav-pill"><i class="fa-solid fa-file-lines"></i> <span>Docs</span></a>
+      </nav>
+
+      <!-- Right: User Profile, Theme & Logout -->
+      <div class="header-right-actions">
+        <div class="user-profile-badge">
+          <div class="user-avatar-circle">
+            <i class="fa-solid fa-user-shield"></i>
+            <span class="user-online-dot"></span>
+          </div>
+          <div class="user-name-col">
+            <strong id="headerUserName">Musa</strong>
+            <span class="user-role-label" id="headerUserRole">Administrator</span>
+          </div>
+        </div>
+
+        <button id="themeToggleBtn" class="btn-action-icon" title="Toggle Light / Dark Mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <button onclick="logout()" class="btn-action-logout" title="Logout from ERP">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-container">
+    <!-- Top Welcome Banner Bar -->
+    <div class="dashboard-hero-banner">
+      <div class="hero-welcome-col">
+        <h2>Transfusion ERP <span class="text-primary">Command Hub</span></h2>
+        <p>Real-time structured donor arrays, eligibility timers, and emergency dispatch system.</p>
+      </div>
+      <div class="hero-status-tags">
+        <div class="status-pill-glow">
+          <span class="live-dot"></span>
+          <span>System Live &bull; CSE 1101 Verified</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Luxury KPI Metrics -->
+    <div class="kpi-grid">
+      <div class="kpi-card-luxury theme-red">
+        <div class="kpi-icon-luxury"><i class="fa-solid fa-users"></i></div>
+        <div class="kpi-info-col">
+          <span class="kpi-label">Total Donors</span>
+          <h3 class="kpi-value" id="kpiTotal">0</h3>
+          <span class="kpi-tag-sub text-muted"><i class="fa-solid fa-database"></i> In-Memory Array</span>
+        </div>
+      </div>
+
+      <div class="kpi-card-luxury theme-green">
+        <div class="kpi-icon-luxury"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="kpi-info-col">
+          <span class="kpi-label">Eligible Now</span>
+          <h3 class="kpi-value text-success" id="kpiEligible">0</h3>
+          <span class="kpi-tag-sub text-success"><i class="fa-solid fa-clock-rotate-left"></i> &ge; 4 Months Cooldown</span>
+        </div>
+      </div>
+
+      <div class="kpi-card-luxury theme-amber">
+        <div class="kpi-icon-luxury"><i class="fa-solid fa-hourglass-half"></i></div>
+        <div class="kpi-info-col">
+          <span class="kpi-label">Resting Cooldown</span>
+          <h3 class="kpi-value text-warning" id="kpiIneligible">0</h3>
+          <span class="kpi-tag-sub text-warning"><i class="fa-solid fa-bed"></i> &lt; 120 Days</span>
+        </div>
+      </div>
+
+      <div class="kpi-card-luxury theme-cyan">
+        <div class="kpi-icon-luxury"><i class="fa-solid fa-truck-medical"></i></div>
+        <div class="kpi-info-col">
+          <span class="kpi-label">Universal (O-)</span>
+          <h3 class="kpi-value text-info" id="kpiUniversal">0</h3>
+          <span class="kpi-tag-sub text-info"><i class="fa-solid fa-shield-heart"></i> Emergency High Value</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blood Inventory Grid -->
+    <div class="section-card glass-panel">
+      <div class="section-title">
+        <h3><i class="fa-solid fa-layer-group text-primary"></i> Blood Group Inventory Matrix</h3>
+        <span class="badge-code">8 Biological Types</span>
+      </div>
+      <div class="blood-group-grid" id="bloodGroupMatrix"></div>
+    </div>
+
+    <!-- 2 Column Split -->
+    <div class="grid-2col">
+      <!-- Recently Added Donors -->
+      <div class="section-card glass-panel">
+        <div class="flex-between mb-3">
+          <h4><i class="fa-solid fa-clock-rotate-left text-primary"></i> Recently Added Donors</h4>
+          <a href="donors.html" class="btn-text">View Full Database <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="table-luxury-wrap">
+          <table class="data-table-luxury">
+            <thead>
+              <tr><th>Donor Info</th><th>Group</th><th>Location</th><th>Eligibility</th></tr>
+            </thead>
+            <tbody id="recentDonorsTbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Fast Emergency Matcher -->
+      <div class="section-card glass-panel emergency-dispatch-card">
+        <div class="emergency-beacon-header">
+          <h4><i class="fa-solid fa-bolt text-primary"></i> Fast Emergency Matcher</h4>
+          <span class="beacon-pill"><span class="beacon-dot"></span> Radar Active</span>
+        </div>
+        <p class="text-xs text-muted">Instant biological compatibility evaluation via structured <code>for</code> loop iteration.</p>
+        
+        <div class="emergency-form-row">
+          <select id="emergencyGroupSelect" class="select-luxury">
+            <option value="A+">A+ (A Positive)</option>
+            <option value="A-">A- (A Negative)</option>
+            <option value="B+">B+ (B Positive)</option>
+            <option value="B-">B- (B Negative)</option>
+            <option value="AB+">AB+ (Universal Recipient)</option>
+            <option value="AB-">AB- (AB Negative)</option>
+            <option value="O+" selected>O+ (O Positive)</option>
+            <option value="O-">O- (Universal Donor)</option>
+          </select>
+          <button onclick="handleEmergencySearch()" class="btn-emergency-glow">
+            <i class="fa-solid fa-magnifying-glass"></i> Find Donors
+          </button>
+        </div>
+
+        <div id="emergencyQuickResults" class="mt-3"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    HemoPulse ERP &bull; Prepared by <strong>Musa (MD. MUSA ALOM MIM)</strong> &bull; Canadian University of Bangladesh &bull; CSE 1101
+  </footer>
+
+  <div id="toastContainer" class="toast-box"></div>
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      renderDashboardPage();
+    });
+
+    function renderDashboardPage() {
+      let eligible = 0, universal = 0;
+      for (let i = 0; i < donorDatabase.length; i++) {
+        if (checkEligibility(donorDatabase[i].lastDonation).isEligible) eligible++;
+        if (donorDatabase[i].bloodGroup === "O-") universal++;
+      }
+      document.getElementById("kpiTotal").textContent = donorDatabase.length;
+      document.getElementById("kpiEligible").textContent = eligible;
+      document.getElementById("kpiIneligible").textContent = donorDatabase.length - eligible;
+      document.getElementById("kpiUniversal").textContent = universal;
+      document.getElementById("navCount").textContent = donorDatabase.length;
+
+      // Render Matrix
+      const groups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+      const counts = {};
+      groups.forEach(g => counts[g] = 0);
+      donorDatabase.forEach(d => { if (counts[d.bloodGroup] !== undefined) counts[d.bloodGroup]++; });
+
+      document.getElementById("bloodGroupMatrix").innerHTML = groups.map(g => {
+        const count = counts[g];
+        const label = count === 1 ? "1 Donor" : `${count} Donors`;
+        const isReady = count > 0;
+        return `
+          <div class="blood-card-luxury" onclick="window.location.href='donors.html?group=${encodeURIComponent(g)}'">
+            <div class="blood-ring-badge">${g}</div>
+            <div class="blood-card-count">${count}</div>
+            <div class="blood-card-label">${label}</div>
+            <div class="blood-status-chip ${isReady ? 'blood-status-ready' : 'blood-status-none'}">
+              ${isReady ? '<i class="fa-solid fa-check"></i> Available' : 'No Donors'}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      // Render Recent with Initial Letter Avatar
+      const recent = [...donorDatabase].slice(-4).reverse();
+      document.getElementById("recentDonorsTbody").innerHTML = recent.map(d => {
+        const elg = checkEligibility(d.lastDonation);
+        const initial = d.name ? d.name.charAt(0).toUpperCase() : "D";
+        return `
+          <tr>
+            <td>
+              <div class="donor-row-cell">
+                <div class="donor-avatar-letter">${initial}</div>
+                <div>
+                  <strong>${d.name}</strong><br>
+                  <a href="tel:${d.phone}" class="text-xs text-muted" style="text-decoration:none;"><i class="fa-solid fa-phone"></i> ${d.phone}</a>
+                </div>
+              </div>
+            </td>
+            <td><span class="donor-group-badge">${d.bloodGroup}</span></td>
+            <td><span class="text-sm"><i class="fa-solid fa-location-dot text-primary"></i> ${d.city}</span></td>
+            <td>${elg.isEligible ? `<span class="status-badge status-eligible"><i class="fa-solid fa-circle-check"></i> Eligible</span>` : `<span class="status-badge status-ineligible"><i class="fa-solid fa-clock"></i> ${elg.daysRemaining}d wait</span>`}</td>
+          </tr>
+        `;
+      }).join("");
+
+      updateEmergencyBox();
+    }
+
+    function updateEmergencyBox() {
+      const group = document.getElementById("emergencyGroupSelect").value;
+      const matches = searchDonor({ requiredGroup: group, isCompatible: true, eligibleOnly: true });
+      document.getElementById("emergencyQuickResults").innerHTML = matches.length === 0 
+        ? `<div class="p-3 text-xs text-warning" style="background:rgba(245,158,11,0.1); border-radius:10px; border:1px solid rgba(245,158,11,0.25);"><i class="fa-solid fa-triangle-exclamation"></i> No eligible donors currently available for <strong>${group}</strong> in central reserve.</div>`
+        : `
+          <div class="text-xs text-success mb-2" style="font-weight:700;">
+            <i class="fa-solid fa-circle-check"></i> ${matches.length} Compatible Donor(s) Ready Now:
+          </div>
+          ${matches.slice(0, 3).map(d => `
+            <div class="emergency-card-match">
+              <div style="display:flex; align-items:center; gap:0.65rem;">
+                <span class="donor-group-badge" style="padding:0.15rem 0.45rem; font-size:0.75rem;">${d.bloodGroup}</span>
+                <div>
+                  <strong style="font-size:0.88rem;">${d.name}</strong><br>
+                  <span class="text-xs text-muted"><i class="fa-solid fa-location-dot text-primary"></i> ${d.city}</span>
+                </div>
+              </div>
+              <a href="tel:${d.phone}" class="btn-call-mini">
+                <i class="fa-solid fa-phone"></i> Call
+              </a>
+            </div>
+          `).join("")}
+        `;
+    }
+
+    document.getElementById("emergencyGroupSelect").addEventListener("change", updateEmergencyBox);
+
+    function handleEmergencySearch() {
+      const group = document.getElementById("emergencyGroupSelect").value;
+      window.location.href = `matching.html?group=${encodeURIComponent(group)}`;
+    }
+  </script>
+</body>
+</html>

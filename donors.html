@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Central Donor Database | HemoPulse ERP</title>
+  <meta name="theme-color" content="#EF233C">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩸</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-body">
+
+  <!-- Modern Unified Glass Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <!-- Left: Brand & University Accreditation -->
+      <a href="dashboard.html" class="brand-link">
+        <div class="brand-logo-pulse"><i class="fa-solid fa-droplet"></i></div>
+        <div class="brand-info-col">
+          <div class="brand-name-row">
+            <span class="brand-title">HEMO<span class="text-primary">PULSE</span></span>
+            <span class="badge-erp-tag">ERP v1.0</span>
+          </div>
+          <span class="brand-meta-sub"><i class="fa-solid fa-graduation-cap"></i> Canadian University of Bangladesh &bull; CSE 1101</span>
+        </div>
+      </a>
+
+      <!-- Center: Segmented Navigation Pills -->
+      <nav class="header-nav-pills">
+        <a href="home.html" class="nav-pill" title="Public Animated Website"><i class="fa-solid fa-globe text-primary"></i> <span>Public Site</span></a>
+        <a href="dashboard.html" class="nav-pill"><i class="fa-solid fa-chart-pie"></i> <span>Dashboard</span></a>
+        <a href="donors.html" class="nav-pill active"><i class="fa-solid fa-address-book"></i> <span>Donors</span> <span class="pill-counter" id="navCount">0</span></a>
+        <a href="matching.html" class="nav-pill"><i class="fa-solid fa-heart-pulse"></i> <span>Matching</span></a>
+        <a href="register.html" class="nav-pill"><i class="fa-solid fa-id-card"></i> <span>Register</span></a>
+        <a href="logic.html" class="nav-pill"><i class="fa-solid fa-code"></i> <span>CSE 1101</span></a>
+        <a href="docs.html" class="nav-pill"><i class="fa-solid fa-file-lines"></i> <span>Docs</span></a>
+      </nav>
+
+      <!-- Right: User Profile, Theme & Logout -->
+      <div class="header-right-actions">
+        <div class="user-profile-badge">
+          <div class="user-avatar-circle">
+            <i class="fa-solid fa-user-shield"></i>
+            <span class="user-online-dot"></span>
+          </div>
+          <div class="user-name-col">
+            <strong id="headerUserName">Musa</strong>
+            <span class="user-role-label" id="headerUserRole">Administrator</span>
+          </div>
+        </div>
+
+        <button id="themeToggleBtn" class="btn-action-icon" title="Toggle Light / Dark Mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <button onclick="logout()" class="btn-action-logout" title="Logout from ERP">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <div class="flex-between mb-3 flex-wrap" style="gap:1rem;">
+      <div>
+        <h2><i class="fa-solid fa-database text-primary"></i> Central Donor Database</h2>
+        <p class="text-muted text-sm">Managing records using In-Memory Array of Objects with linear iteration algorithms.</p>
+      </div>
+      <div class="flex-gap">
+        <button onclick="exportCsv()" class="btn-secondary"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+        <a href="register.html" class="btn-primary-gradient" style="text-decoration:none;"><i class="fa-solid fa-user-plus"></i> Register Donor</a>
+        <button onclick="resetData()" class="btn-danger-outline" title="Reset sample records"><i class="fa-solid fa-rotate-left"></i> Reset Demo</button>
+      </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar glass-panel">
+      <div class="search-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Search by name, phone, city, or blood group..." oninput="renderTable()">
+      </div>
+      <div class="filter-controls">
+        <select id="groupFilter" class="form-select-sm" onchange="renderTable()">
+          <option value="ALL">All Blood Groups</option>
+          <option value="A+">A+</option><option value="A-">A-</option>
+          <option value="B+">B+</option><option value="B-">B-</option>
+          <option value="AB+">AB+</option><option value="AB-">AB-</option>
+          <option value="O+">O+</option><option value="O-">O-</option>
+        </select>
+        <select id="eligibilityFilter" class="form-select-sm" onchange="renderTable()">
+          <option value="ALL">All Status</option>
+          <option value="ELIGIBLE">Eligible (&ge; 4 Months)</option>
+          <option value="INELIGIBLE">Resting (&lt; 120 Days)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Table Container -->
+    <div class="glass-panel" style="padding:0; overflow:hidden;">
+      <div class="table-luxury-wrap">
+        <table class="data-table-luxury" id="donorsTable">
+          <thead>
+            <tr>
+              <th style="width: 60px;">ID</th>
+              <th>Donor Information</th>
+              <th>Blood Group</th>
+              <th>Contact Number</th>
+              <th>Location</th>
+              <th>Last Donation</th>
+              <th>Transfusion Status</th>
+              <th class="text-right" style="padding-right: 1.5rem;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="donorTableBody"></tbody>
+        </table>
+      </div>
+      <div id="noDonorsFound" class="hidden" style="text-align:center; padding:3rem 1.5rem; color:var(--text-muted);">
+        <i class="fa-solid fa-folder-open" style="font-size:2.5rem; color:var(--text-dim); margin-bottom:0.75rem; display:block;"></i>
+        <strong>No donor records match the specified search query.</strong>
+        <p class="text-xs text-muted mt-1">Try changing or clearing your blood group and eligibility filters.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    HemoPulse ERP &bull; Prepared by <strong>Musa (MD. MUSA ALOM MIM)</strong> &bull; Canadian University of Bangladesh &bull; CSE 1101
+  </footer>
+
+  <div id="toastContainer" class="toast-box"></div>
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const grp = urlParams.get("group");
+      if (grp) document.getElementById("groupFilter").value = grp;
+      
+      document.getElementById("navCount").textContent = donorDatabase.length;
+      renderTable();
+    });
+
+    function renderTable() {
+      const q = document.getElementById("searchInput").value;
+      const grp = document.getElementById("groupFilter").value;
+      const stat = document.getElementById("eligibilityFilter").value;
+
+      let results = searchDonor({
+        requiredGroup: grp === "ALL" ? null : grp,
+        eligibleOnly: stat === "ELIGIBLE",
+        generalQuery: q
+      });
+
+      if (stat === "INELIGIBLE") {
+        results = results.filter(d => !checkEligibility(d.lastDonation).isEligible);
+      }
+
+      const tbody = document.getElementById("donorTableBody");
+      const noFound = document.getElementById("noDonorsFound");
+
+      if (results.length === 0) {
+        tbody.innerHTML = "";
+        noFound.classList.remove("hidden");
+        return;
+      }
+
+      noFound.classList.add("hidden");
+      tbody.innerHTML = results.map(d => {
+        const elg = checkEligibility(d.lastDonation);
+        const initial = d.name ? d.name.charAt(0).toUpperCase() : "D";
+        return `
+          <tr>
+            <td><span class="badge-code">#${d.id}</span></td>
+            <td>
+              <div class="donor-row-cell">
+                <div class="donor-avatar-letter">${initial}</div>
+                <div>
+                  <strong>${d.name}</strong><br>
+                  <span class="text-xs text-muted">${d.gender || 'Donor'}, ${d.age || '25'} yrs</span>
+                </div>
+              </div>
+            </td>
+            <td><span class="donor-group-badge">${d.bloodGroup}</span></td>
+            <td>
+              <a href="tel:${d.phone}" class="text-sm font-bold" style="color:var(--text-main); text-decoration:none;">
+                <i class="fa-solid fa-phone text-primary" style="font-size:0.8rem; margin-right:0.3rem;"></i>${d.phone}
+              </a>
+            </td>
+            <td><span class="text-sm"><i class="fa-solid fa-location-dot text-primary"></i> ${d.city}</span></td>
+            <td><span class="text-xs text-muted"><i class="fa-solid fa-calendar-day"></i> ${d.lastDonation}</span></td>
+            <td>
+              ${elg.isEligible 
+                ? `<span class="status-badge status-eligible"><i class="fa-solid fa-circle-check"></i> Eligible (${elg.daysElapsed}d)</span>` 
+                : `<span class="status-badge status-ineligible"><i class="fa-solid fa-hourglass-half"></i> ${elg.daysRemaining}d Resting</span>`
+              }
+            </td>
+            <td class="text-right" style="padding-right: 1.5rem;">
+              <div class="flex-gap" style="justify-content:flex-end;">
+                <a href="tel:${d.phone}" class="btn-call-mini" title="Call Donor"><i class="fa-solid fa-phone"></i></a>
+                <button onclick="copyToClipboard('${d.phone}')" class="btn-action-icon" style="width:30px; height:30px; font-size:0.75rem;" title="Copy Phone Number">
+                  <i class="fa-solid fa-copy"></i>
+                </button>
+                <button onclick="handleDeleteDonor(${d.id})" class="btn-action-icon" style="width:30px; height:30px; font-size:0.75rem; color:var(--primary);" title="Remove Record">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function handleDeleteDonor(id) {
+      if (confirm(`Remove donor #${id} from the database?`)) {
+        deleteDonor(id);
+        renderTable();
+        document.getElementById("navCount").textContent = donorDatabase.length;
+      }
+    }
+  </script>
+</body>
+</html>
