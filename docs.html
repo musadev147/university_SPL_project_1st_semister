@@ -136,7 +136,62 @@
           </table>
         </div>
 
-        <h5>4. Academic Conclusion</h5>
+        <h5>4. CSE 1101 Structured Programming (SPL) Viva & Defense Q&A</h5>
+        <p class="text-muted text-sm mb-3">Key technical questions and high-scoring answers expected during lab defense and oral examination.</p>
+
+        <div class="accordion-group mb-4">
+          <div class="accordion-item glass-panel active">
+            <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('active')">
+              <span><i class="fa-solid fa-circle-question text-primary"></i> Q1: How does this project embody Structured Programming?</span>
+              <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+            </button>
+            <div class="accordion-content">
+              <p>The system adheres strictly to the 3 structural control pillars: <strong>Sequence</strong> (linear execution), <strong>Selection</strong> (<code>if/else</code> compatibility branching), and <strong>Iteration</strong> (<code>for</code> loop traversing donor arrays). It divides complex business logic into single-responsibility modular functions (<code>checkEligibility</code>, <code>searchDonor</code>, <code>registerDonor</code>) without monolithic procedural entanglements.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item glass-panel">
+            <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('active')">
+              <span><i class="fa-solid fa-circle-question text-primary"></i> Q2: What is the C Language equivalent of the in-memory donor array?</span>
+              <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+            </button>
+            <div class="accordion-content">
+              <p>In C, it is implemented as an <strong>Array of Structures</strong> (<code>struct Donor donorDatabase[100];</code>), where each struct encapsulates composite primitive data types (integers, char arrays for strings, and floats).</p>
+            </div>
+          </div>
+
+          <div class="accordion-item glass-panel">
+            <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('active')">
+              <span><i class="fa-solid fa-circle-question text-primary"></i> Q3: What is the Time & Space Complexity of the matching algorithm?</span>
+              <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+            </button>
+            <div class="accordion-content">
+              <p><strong>Time Complexity:</strong> <code>O(N)</code> (Linear Time), where N is the total registered donors. In the worst case, the loop scans all N records once. <br><strong>Space Complexity:</strong> <code>O(M)</code> auxiliary space to hold the matching result subset, with <code>O(1)</code> memory overhead.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item glass-panel">
+            <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('active')">
+              <span><i class="fa-solid fa-circle-question text-primary"></i> Q4: How is the 120-Day Cooldown mathematically verified?</span>
+              <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+            </button>
+            <div class="accordion-content">
+              <p>It calculates time delta in milliseconds: <code>&Delta;t = Date.now() - timestamp(lastDonation)</code>, converts milliseconds into calendar days <code>days = floor(&Delta;t / (1000*60*60*24))</code>, and evaluates <code>isEligible = (days >= 120)</code>.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item glass-panel">
+            <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('active')">
+              <span><i class="fa-solid fa-circle-question text-primary"></i> Q5: Why use pure Vanilla JavaScript rather than React or MySQL?</span>
+              <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+            </button>
+            <div class="accordion-content">
+              <p>To demonstrate fundamental computer science mastery of data structures, pointer/array mutations, loop iterations, and memory models without framework abstraction black-boxes.</p>
+            </div>
+          </div>
+        </div>
+
+        <h5>5. Academic Conclusion</h5>
         <p>This project demonstrates how structured programming principles can be harnessed to build full-scale, responsive web ERP systems. By avoiding reliance on heavy external UI frameworks, the application achieves instantaneous execution times (&lt; 1 ms for iterative searches), clean codebase architecture, and robust state persistence via <code>localStorage</code>.</p>
       </div>
     </div>
