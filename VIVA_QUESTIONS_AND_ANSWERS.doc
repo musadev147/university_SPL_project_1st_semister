@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CSE 1101 SPL Viva and Project Defense Master Guide</title>
+<style>
+  body {
+    font-family: 'Calibri', 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #111827;
+    margin: 40px;
+  }
+  h1 { color: #8D0801; border-bottom: 2px solid #EF233C; padding-bottom: 8px; font-size: 24pt; }
+  h2 { color: #D90429; margin-top: 24px; font-size: 16pt; border-bottom: 1px solid #E5E7EB; padding-bottom: 4px; }
+  h3 { color: #1F2937; margin-top: 18px; font-size: 13pt; }
+  .box { background: #F3F4F6; border-left: 4px solid #EF233C; padding: 12px 16px; margin: 15px 0; border-radius: 4px; }
+  .meta { background: #EEF2FF; border: 1px solid #C7D2FE; padding: 10px 14px; border-radius: 6px; font-size: 10pt; }
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 11pt; }
+  th, td { border: 1px solid #D1D5DB; padding: 10px 12px; text-align: left; }
+  th { background-color: #F9FAFB; font-weight: bold; color: #111827; }
+  pre, code { font-family: 'Consolas', 'Courier New', monospace; background: #F8FAFC; color: #0F172A; }
+  pre { padding: 12px; border: 1px solid #E2E8F0; border-radius: 6px; overflow-x: auto; font-size: 10pt; }
+</style>
+</head>
+<body>
+
+<h1>🎓 CSE 1101: Structured Programming Language (SPL)</h1>
+<h2>🩸 HemoPulse Blood Donor Management ERP — Viva & Project Defense Guide</h2>
+
+<div class="meta">
+  <strong>Institution:</strong> Canadian University of Bangladesh (CUB)<br>
+  <strong>Department:</strong> Department of Computer Science & Engineering<br>
+  <strong>Course Code:</strong> CSE 1101 (Structured Programming Language)<br>
+  <strong>Project Lead:</strong> Musa (MD. MUSA ALOM MIM)<br>
+  <strong>Project Name:</strong> HemoPulse — Smart Blood Donor Management & Transfusion Radar ERP
+</div>
+
+<hr>
+
+<h2>📌 ১. প্রজেক্টের ৩০ সেকেন্ডের এলিভেটর পিচ (Opening Pitch)</h2>
+<p><strong>Sir might ask:</strong> <em>"Tell me briefly about your project and what it does."</em></p>
+
+<div class="box">
+  <strong>🗣️ আপনার উত্তর (English):</strong><br>
+  <em>"Honorable Sir, our project is <strong>HemoPulse</strong>, an emergency blood donor management and transfusion radar system built strictly using <strong>Structured Programming Principles</strong> without any heavy third-party frameworks.<br>
+  It solves two critical emergency healthcare problems: First, finding biologically compatible blood donors instantly via an O(N) iterative search algorithm; Second, automatically calculating the medical 120-day (4-month) physiological recovery cooldown to ensure donor safety.<br>
+  The entire system is modular, consisting of distinct single-responsibility functions, composite array data structures, and persistent storage."</em>
+</div>
+
+<div class="box" style="border-left-color: #10B981;">
+  <strong>💡 সহজ বাংলা সারসংক্ষেপ:</strong><br>
+  "স্যার, আমাদের প্রজেক্ট 'HemoPulse' একটি লাইটওয়েট ব্লাড ডোনার ম্যানেজমেন্ট সিস্টেম যা পিউর স্ট্রাকচার্ড প্রোগ্রামিং মেথডলজি দিয়ে তৈরি। এর মূল কাজ হলো রোগীর রক্তের গ্রুপ অনুযায়ী সামঞ্জস্যপূর্ণ ডোনার খুঁজে বের করা এবং ১২০ দিনের (৪ মাস) মেডিক্যাল কুলডাউন হিসাব করে ডোনার নিরাপদ কি না তা নির্ণয় করা।"
+</div>
+
+<hr>
+
+<h2>📚 Category 1: Structured Programming Core Concepts (মৌলিক ধারণা)</h2>
+
+<h3>❓ Question 1: What is Structured Programming, and how does your project implement it?</h3>
+<p><strong>Answer:</strong><br>
+Structured Programming is a programming paradigm aimed at improving code clarity, quality, and development time by making extensive use of <strong>modular subroutines (functions)</strong>, <strong>block structures</strong>, and <strong>three fundamental control flows</strong>:</p>
+<ol>
+  <li><strong>Sequence:</strong> Step-by-step sequential execution.</li>
+  <li><strong>Selection (Condition):</strong> <code>if-else</code> and <code>switch-case</code> branching.</li>
+  <li><strong>Iteration (Repetition):</strong> <code>for</code> and <code>while</code> loops (avoiding unconditional jumps like <code>goto</code>).</li>
+</ol>
+<p><strong>In our project:</strong> Every feature is broken down into independent functions: <code>checkEligibility()</code>, <code>searchDonor()</code>, <code>registerDonor()</code>, <code>deleteDonor()</code>, <code>getCompatibleBloodGroups()</code>. Monolithic code is strictly avoided.</p>
+
+<hr>
+
+<h3>❓ Question 2: What Data Structure did you use to store donor information?</h3>
+<p><strong>Answer:</strong><br>
+We used an <strong>Array of Composite Objects / Structures</strong>.</p>
+<ul>
+  <li><strong>In JavaScript:</strong> An array of objects:
+  <pre><code>donorDatabase = [
+  { id: 1, name: "Rahim Uddin", bloodGroup: "A+", lastDonation: "2026-05-10", phone: "01711223344", city: "Dhaka (Banani)", age: 26, gender: "Male" },
+  ...
+];</code></pre></li>
+  <li><strong>In C Language Equivalent (Array of Structures):</strong>
+  <pre><code>struct Donor {
+    int id;
+    char name[50];
+    char bloodGroup[5];
+    char lastDonation[15]; // "YYYY-MM-DD"
+    char phone[15];
+    char city[50];
+    int age;
+    char gender[10];
+};
+
+struct Donor donorDatabase[100]; // Array of structures
+int totalDonors = 8;</code></pre></li>
+</ul>
+<p><strong>Why this structure?</strong> Because a donor profile contains multiple attributes of varying data types (integers, strings, dates). A structure/object binds them into a single record entity, while an array allows linear indexed access.</p>
+
+<hr>
+
+<h3>❓ Question 3: How is Modularity achieved in your project?</h3>
+<p><strong>Answer:</strong><br>
+Modularity follows the <strong>Divide and Conquer</strong> rule. Instead of writing monolithic code in one place, we wrote specialized functions where each function has one specific responsibility and returns a predictable output:</p>
+<ul>
+  <li><code>checkEligibility(date)</code>: Pure calculation module.</li>
+  <li><code>getCompatibleBloodGroups(group)</code>: Lookup table module.</li>
+  <li><code>searchDonor(criteria)</code>: Filter & iteration module.</li>
+  <li><code>registerDonor(data)</code>: Validation & append module.</li>
+  <li><code>deleteDonor(id)</code>: Array mutation module.</li>
+</ul>
+
+<hr>
+
+<h2>⚙️ Category 2: Algorithms & Mathematical Logic (অ্যালগরিদম ও লজিক)</h2>
+
+<h3>❓ Question 4: How does the 120-Day (4-Month) Cooldown Calculation work?</h3>
+<p><strong>Answer:</strong><br>
+It uses <strong>Epoch Timestamp Arithmetic</strong> (converting date strings into milliseconds since Unix Epoch: Jan 1, 1970).</p>
+<ol>
+  <li><strong>Delta Calculation:</strong> Δt = Current Time (ms) - Last Donation Time (ms)</li>
+  <li><strong>Unit Conversion to Days:</strong> Days Passed = floor(Δt / (1000 * 60 * 60 * 24))</li>
+  <li><strong>Condition Check:</strong> isEligible = (Days Passed &gt;= 120)</li>
+  <li><strong>Days Remaining:</strong> Days Remaining = max(0, 120 - Days Passed)</li>
+</ol>
+
+<pre><code>// JavaScript Function:
+function checkEligibility(lastDonationDate) {
+  if (!lastDonationDate) return { isEligible: false, daysPassed: 0, daysRemaining: 120 };
+  const diffInMs = new Date().getTime() - new Date(lastDonationDate).getTime();
+  const daysPassed = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+  const isEligible = daysPassed >= 120;
+  return {
+    isEligible,
+    daysPassed: Math.max(0, daysPassed),
+    daysRemaining: isEligible ? 0 : (120 - daysPassed)
+  };
+}</code></pre>
+
+<hr>
+
+<h3>❓ Question 5: What Search Algorithm is used, and what is its Time & Space Complexity?</h3>
+<p><strong>Answer:</strong><br>
+We implemented a <strong>Linear Iterative Search Algorithm</strong> using a standard <code>for</code> loop.</p>
+<ul>
+  <li><strong>Time Complexity:</strong> O(N) where N is the number of donors in the database. In the worst case, the loop checks all N records once.</li>
+  <li><strong>Space Complexity:</strong> O(M) where M is the number of matching records stored in the temporary results array. Auxiliary space is O(1).</li>
+  <li><strong>Latency:</strong> Because the dataset is in-memory RAM, N = 1,000 donors takes &lt; 1 ms to evaluate.</li>
+</ul>
+
+<hr>
+
+<h3>❓ Question 6: How does the Blood Compatibility Matrix logic work?</h3>
+<p><strong>Answer:</strong><br>
+Human blood groups follow biological antigen-antibody rules:</p>
+<ul>
+  <li><strong>O- (Universal Donor):</strong> Has no A, B, or Rh antigens → can donate to all 8 groups, but can only receive from O-.</li>
+  <li><strong>AB+ (Universal Recipient):</strong> Has no antibodies → can receive from all 8 groups, but can only donate to AB+.</li>
+</ul>
+
+<pre><code>const COMPATIBILITY_MATRIX = {
+  "A+":  ["A+", "A-", "O+", "O-"],
+  "A-":  ["A-", "O-"],
+  "B+":  ["B+", "B-", "O+", "O-"],
+  "B-":  ["B-", "O-"],
+  "AB+": ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"], // Universal Recipient
+  "AB-": ["AB-", "A-", "B-", "O-"],
+  "O+":  ["O+", "O-"],
+  "O-":  ["O-"]                                              // Universal Donor
+};</code></pre>
+
+<hr>
+
+<h2>💾 Category 3: Data Storage & Validation (ডাটা সংরক্ষণ ও ভ্যালিডেশন)</h2>
+
+<h3>❓ Question 7: How does your system store and persist data?</h3>
+<p><strong>Answer:</strong></p>
+<ul>
+  <li><strong>Primary Runtime State:</strong> In-memory Array in RAM (<code>donorDatabase</code>).</li>
+  <li><strong>Persistence Layer:</strong> Serialized JSON string saved in browser <code>localStorage</code>.</li>
+  <li><strong>Analogy to C Language:</strong> In C, we use <code>fopen("donors.txt", "w")</code>, <code>fwrite()</code>, <code>fprintf()</code> and <code>fscanf()</code>. In web structured programming, <code>localStorage.setItem()</code> and <code>JSON.stringify()</code> perform the exact same serialization to persistent disk storage.</li>
+</ul>
+
+<hr>
+
+<h3>❓ Question 8: What Input Validations and Boundary Checks are implemented?</h3>
+<p><strong>Answer:</strong></p>
+<ol>
+  <li><strong>Age Validation:</strong> Boundary constraint 18 &le; age &le; 65 (standard medical donation criteria).</li>
+  <li><strong>Phone Number Format:</strong> Ensures valid 11-digit mobile numbers (e.g. 01907096147).</li>
+  <li><strong>Date Boundary:</strong> Cannot set future dates as past donation dates (Last Donation &le; Today).</li>
+  <li><strong>Primary Key ID Uniqueness:</strong> Incremental autoincrement loop ensuring no two donors share the same ID.</li>
+</ol>
+
+<hr>
+
+<h2>🎯 Category 4: Tricky Viva Questions & High-Scoring Answers (কঠিন প্রশ্নের উত্তর)</h2>
+
+<h3>❓ Tricky Q1: "Why didn't you use React, Next.js or MongoDB?"</h3>
+<div class="box">
+  <strong>Answer:</strong><br>
+  <em>"Sir, the primary objective of CSE 1101 is to master the foundational mechanics of <strong>Structured Programming</strong> — such as arrays, loops, functions, memory state, and conditional algorithms. External frameworks abstract these low-level operations behind black boxes. By writing 100% Vanilla Structured Code, we proved our ability to build an enterprise-grade ERP using core computer science fundamentals without relying on automated library abstractions."</em>
+</div>
+
+<hr>
+
+<h3>❓ Tricky Q2: "What happens when you delete a donor from the middle of the array?"</h3>
+<p><strong>Answer:</strong><br>
+<em>"When a donor is deleted using <code>splice(index, 1)</code> (or array shifting in C), all subsequent elements shift left by 1 index to keep the memory contiguous. The updated array is then re-saved to disk."</em></p>
+
+<pre><code>// C Array Deletion Code:
+void deleteDonor(int index, int *total) {
+    for (int i = index; i < *total - 1; i++) {
+        donorDatabase[i] = donorDatabase[i + 1]; // Shift elements left
+    }
+    (*total)--;
+}</code></pre>
+
+<hr>
+
+<h2>📋 Quick Cheat Sheet (মুখস্থ করার জন্য টেবিল)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concept</th>
+      <th>Implementation in Project (JS)</th>
+      <th>C Language Equivalent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Record Storage</strong></td>
+      <td>Array of Objects (<code>donorDatabase</code>)</td>
+      <td>Array of <code>struct Donor</code></td>
+    </tr>
+    <tr>
+      <td><strong>Search</strong></td>
+      <td><code>searchDonor()</code> with <code>for</code> loop</td>
+      <td>Linear Search with <code>for(i=0; i&lt;N; i++)</code></td>
+    </tr>
+    <tr>
+      <td><strong>Cooldown</strong></td>
+      <td>Math difference on Milliseconds</td>
+      <td>Timestamp math with <code>difftime()</code></td>
+    </tr>
+    <tr>
+      <td><strong>Lookup Matrix</strong></td>
+      <td>JavaScript Object key-value map</td>
+      <td>2D Char Array / Switch-Case</td>
+    </tr>
+    <tr>
+      <td><strong>Persistence</strong></td>
+      <td><code>localStorage</code> JSON String</td>
+      <td>File Handling <code>fopen()</code>, <code>fprintf()</code></td>
+    </tr>
+    <tr>
+      <td><strong>Time Complexity</strong></td>
+      <td>O(N) Linear Search</td>
+      <td>O(N) Linear Scan</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<p style="text-align:center; font-size:10pt; color:#6B7280;">
+  Prepared for <strong>Canadian University of Bangladesh &bull; Department of CSE &bull; CSE 1101 Structured Programming Language</strong><br>
+  Author: <strong>Musa (MD. MUSA ALOM MIM)</strong> &bull; Emergency Hotline: <strong>01907096147</strong>
+</p>
+
+</body>
+</html>
