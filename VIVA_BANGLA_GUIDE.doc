@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<title>CSE 1101 SPL Bangla Viva and Defense Guide</title>
+<style>
+  body {
+    font-family: 'SolaimanLipi', 'Kalpurush', 'Calibri', 'Arial', sans-serif;
+    line-height: 1.7;
+    color: #111827;
+    margin: 40px;
+  }
+  h1 { color: #8D0801; border-bottom: 2px solid #EF233C; padding-bottom: 8px; font-size: 22pt; }
+  h2 { color: #D90429; margin-top: 24px; font-size: 16pt; border-bottom: 1px solid #E5E7EB; padding-bottom: 4px; }
+  h3 { color: #1F2937; margin-top: 18px; font-size: 13pt; }
+  .box { background: #F3F4F6; border-left: 4px solid #EF233C; padding: 12px 16px; margin: 15px 0; border-radius: 4px; }
+  .meta { background: #EEF2FF; border: 1px solid #C7D2FE; padding: 10px 14px; border-radius: 6px; font-size: 11pt; }
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 11pt; }
+  th, td { border: 1px solid #D1D5DB; padding: 10px 12px; text-align: left; }
+  th { background-color: #F9FAFB; font-weight: bold; color: #111827; }
+  pre, code { font-family: 'Consolas', 'Courier New', monospace; background: #F8FAFC; color: #0F172A; }
+  pre { padding: 12px; border: 1px solid #E2E8F0; border-radius: 6px; overflow-x: auto; font-size: 10pt; }
+</style>
+</head>
+<body>
+
+<h1>🎓 CSE 1101: স্ট্রাকচার্ড প্রোগ্রামিং ল্যাঙ্গুয়েজ (SPL)</h1>
+<h2>🩸 HemoPulse ব্লাড ডোনার ম্যানেজমেন্ট সিস্টেম — ১০০% বাংলা ভাইভা ও ডিফেন্স গাইড</h2>
+
+<div class="meta">
+  <strong>বিশ্ববিদ্যালয়:</strong> কানাডিয়ান ইউনিভার্সিটি অব বাংলাদেশ (CUB)<br>
+  <strong>বিভাগ:</strong> কম্পিউটার সায়েন্স অ্যান্ড ইঞ্জিনিয়ারিং (CSE)<br>
+  <strong>কোর্স কোড:</strong> CSE 1101 (Structured Programming Language)<br>
+  <strong>শিক্ষার্থী / লিড:</strong> মূসা (MD. MUSA ALOM MIM)<br>
+  <strong>প্রজেক্টের নাম:</strong> HemoPulse — স্মার্ট ব্লাড ডোনার ম্যানেজমেন্ট ERP
+</div>
+
+<hr>
+
+<h2>📌 ১. প্রজেক্টের ওপেনিং প্রশ্ন (Opening Pitch)</h2>
+<p><strong>প্রশ্ন:</strong> <em>"তোমার এই প্রজেক্টটা সম্পর্কে সংক্ষেপে বলো, এটা কী কাজ করে?"</em></p>
+
+<div class="box">
+  <strong>🗣️ সেরা উত্তর:</strong><br>
+  "স্যার, আমাদের প্রজেক্টটির নাম <strong>HemoPulse</strong>। এটি একটি জরুরি ব্লাড ডোনার ম্যানেজমেন্ট ও ট্রান্সফিউশন রাডার সিস্টেম, যা কোনো এক্সটার্নাল লাইব্রেরি বা ফ্রেমওয়ার্ক ছাড়া <strong>পিউর স্ট্রাকচার্ড প্রোগ্রামিং মেথডলজি (Structured Programming Principles)</strong> দিয়ে তৈরি করা হয়েছে।<br><br>
+  <strong>এই সিস্টেমের প্রধান দুটি কাজ:</strong><br>
+  1. <strong>লাইভ ব্লাড ফাইন্ডার ও কম্প্যাটিবিলিটি রাডার:</strong> রোগীর রক্তের গ্রুপ সিলেক্ট করলেই বায়োলজিক্যাল নিয়ম অনুযায়ী তাৎক্ষণিকভাবে উপযুক্ত ডোনারদের খুঁজে বের করে (O(N) সার্চ অ্যালগরিদম দিয়ে)।<br>
+  2. <strong>১২০ দিনের (৪ মাস) সেফটি কুলডাউন ক্যালকুলেশন:</strong> রক্তদাতার শরীর পুনরায় রক্ত তৈরির জন্য যে ১২০ দিন সময় নেয়, সিস্টেম স্বয়ংক্রিয়ভাবে তারিখের পার্থক্য হিসাব করে ডোনার রক্ত দেওয়ার জন্য নিরাপদ কি না তা যাচাই করে।<br><br>
+  পুরো প্রজেক্টটি মডুলার ফাংশন, ইন-মেমোরি অ্যারে ডাটা স্ট্রাকচার এবং লোকালস্টোরেজ দিয়ে পরিচালিত।"
+</div>
+
+<hr>
+
+<h2>📚 ২. স্ট্রাকচার্ড প্রোগ্রামিং (SPL) সম্পর্কিত মূল প্রশ্ন ও উত্তর</h2>
+
+<h3>❓ প্রশ্ন ১: স্ট্রাকচার্ড প্রোগ্রামিং (Structured Programming) কী? তোমার প্রজেক্টে এটা কীভাবে প্রয়োগ করেছ?</h3>
+<p><strong>উত্তর:</strong><br>
+"স্ট্রাকচার্ড প্রোগ্রামিং হলো একটি প্রোগ্রামিং মেথডলজি যেখানে কোডকে এলোমেলো না লিখে <strong>ছোট ছোট মডুলার ফাংশনে (Subroutines)</strong> ভাগ করা হয় এবং কোডের ফ্লো নিয়ন্ত্রণের জন্য ৩টি মূল কন্ট্রোল স্ট্রাকচার ব্যবহার করা হয়:</p>
+<ol>
+  <li><strong>Sequence (ধারাবাহিকতা):</strong> কোড লাইন বাই লাইন উপর থেকে নিচে এক্সিকিউট হয়।</li>
+  <li><strong>Selection (শর্ত/সিদ্ধান্ত):</strong> <code>if-else</code> এবং <code>switch-case</code> দিয়ে বিভিন্ন রক্তের গ্রুপ ও শর্ত যাচাই করা হয়।</li>
+  <li><strong>Iteration (লুপ/পুনরাবৃত্তি):</strong> <code>for</code> এবং <code>while</code> লুপ দিয়ে ডোনার অ্যারে সার্চ করা হয় (কোনো প্রকার ক্ষতিকর <code>goto</code> স্টেটমেন্ট ছাড়া)।</li>
+</ol>
+<p>আমাদের কোডে কোনো মনোলিথিক বা জটলা কোড নেই; প্রতিটি কাজের জন্য আলাদা একক দায়িত্বপ্রাপ্ত ফাংশন তৈরি করা হয়েছে।"</p>
+
+<hr>
+
+<h3>❓ প্রশ্ন ২: ডোনারদের তথ্য সংরক্ষণ করতে কী Data Structure ব্যবহার করেছ? C ভাষায় এটা কীভাবে লিখতে হয়?</h3>
+<p><strong>উত্তর:</strong><br>
+"আমরা <strong>Array of Composite Objects / Structures</strong> ব্যবহার করেছি। কারণ একজন রক্তদাতার অনেক ধরনের তথ্য থাকে (যেমন: নাম, ফোন, রক্তের গ্রুপ, বয়স, শেষ রক্তদানের তারিখ)।</p>
+
+<pre><code>// C ল্যাঙ্গুয়েজের সমতুল্য কোড (Array of Structures):
+struct Donor {
+    int id;
+    char name[50];
+    char bloodGroup[5];
+    char lastDonation[15]; // "YYYY-MM-DD"
+    char phone[15];
+    char city[50];
+    int age;
+    char gender[10];
+};
+
+struct Donor donorDatabase[100]; // ১০০ জন ডোনারের অ্যারে
+int totalDonors = 8;</code></pre>
+
+<hr>
+
+<h3>❓ প্রশ্ন ৩: মডুলারিটি (Modularity) কী এবং তোমার প্রজেক্টে এটি কীভাবে সাজিয়েছ?</h3>
+<p><strong>উত্তর:</strong><br>
+"মডুলারিটি হলো <strong>'Divide and Conquer'</strong> বা বড় একটি কাজকে ছোট ছোট স্বাধীন অংশে ভাগ করার নীতি। আমাদের সিস্টেমে প্রতিটি লজিকের জন্য আলাদা ফাংশন রয়েছে:</p>
+<ul>
+  <li><code>checkEligibility(date)</code>: শুধুমাত্র ১২০ দিনের কুলডাউন হিসাব করে।</li>
+  <li><code>getCompatibleBloodGroups(group)</code>: কোন গ্রুপ কাকে রক্ত দিতে পারে তার তালিকা রিটার্ন করে।</li>
+  <li><code>searchDonor(criteria)</code>: লুপ চালিয়ে ফিল্টারিং রেজাল্ট বের করে।</li>
+  <li><code>registerDonor(data)</code>: নতুন ডোনারকে ডাটাবেজ অ্যারেতে পুশ করে।</li>
+  <li><code>deleteDonor(id)</code>: নির্দিষ্ট আইডি অনুযায়ী অ্যারে থেকে ডোনার রিমুভ করে।"</li>
+</ul>
+
+<hr>
+
+<h2>⚙️ ৩. অ্যালগরিদম ও গাণিতিক লজিক সম্পর্কিত প্রশ্ন ও উত্তর</h2>
+
+<h3>❓ প্রশ্ন ৪: ১২০ দিনের (৪ মাস) Cooldown ক্যালকুলেশনটা কোডে কীভাবে হিসাব করেছ?</h3>
+<p><strong>উত্তর:</strong><br>
+"আমরা <strong>Epoch Timestamp Arithmetic</strong> ব্যবহার করেছি (অর্থাৎ ১৯৭০ সালের ১ জানুয়ারি থেকে বর্তমান সময়ের মিলিসেকেন্ডের হিসাব):</p>
+<ol>
+  <li><strong>সময়ের ব্যবধান:</strong> diffInMs = Date.now() - new Date(lastDonation).getTime()</li>
+  <li><strong>দিনে রূপান্তর:</strong> daysPassed = Math.floor(diffInMs / (1000 * 60 * 60 * 24))</li>
+  <li><strong>শর্ত যাচাই:</strong> daysPassed &ge; 120 হলে রক্ত দিতে পারবে (Eligible)।</li>
+  <li><strong>বাকি দিন হিসাব:</strong> বাকি দিন = 120 - daysPassed</li>
+</ol>
+
+<hr>
+
+<h3>❓ প্রশ্ন ৫: ডোনার সার্চ করার অ্যালগরিদম কীভাবে কাজ করে? এর Time Complexity কত?</h3>
+<p><strong>উত্তর:</strong><br>
+"আমরা <strong>Linear Iterative Search Algorithm (লিনিয়ার সার্চ)</strong> ব্যবহার করেছি যা একটি সাধারণ <code>for</code> লুপের মাধ্যমে কাজ করে।</p>
+<ul>
+  <li><strong>Time Complexity (সময় জটিলতা):</strong> O(N) — যেখানে N হলো মোট ডোনার সংখ্যা। সবচেয়ে খারাপ ক্ষেত্রে অ্যালগরিদমটি N টি রেকর্ড একবার করে স্ক্যান করে।</li>
+  <li><strong>Space Complexity (মেমোরি জটিলতা):</strong> O(M) — যেখানে M হলো মিলে যাওয়া ফিল্টারড ডোনারের সংখ্যা।</li>
+  <li><strong>গতি (Latency):</strong> ইন-মেমোরি র‍্যামে থাকায় ১,০০০ ডোনারের মধ্যেও সার্চ করতে <strong>১ মিলিসেকেন্ডেরও কম সময়</strong> লাগে।"</li>
+</ul>
+
+<hr>
+
+<h3>❓ প্রশ্ন ৬: রক্তের গ্রুপের সামঞ্জস্যতা (Blood Compatibility Matrix) কীভাবে কাজ করে?</h3>
+<p><strong>উত্তর:</strong><br>
+"চিকিৎসাবিজ্ঞানের অ্যান্টিজেন ও অ্যান্টিবডি নিয়মানুযায়ী:</p>
+<ul>
+  <li><strong>O- (Universal Donor বা সর্বজনীন দাতা):</strong> এদের রক্তে কোনো অ্যান্টিজেন থাকে না। তাই এটি ৮টি গ্রুপের যে কাউকেই দেওয়া যায়, কিন্তু O- ব্যক্তি শুধু O- রক্তই নিতে পারে।</li>
+  <li><strong>AB+ (Universal Recipient বা সর্বজনীন গ্রহীতা):</strong> এদের রক্তে কোনো অ্যান্টিবডি থাকে না। তাই এরা ৮টি গ্রুপের যেকোনো রক্ত নিরাপদে নিতে পারে।"</li>
+</ul>
+
+<hr>
+
+<h2>💾 ৪. ডাটা স্টোরেজ ও ভ্যালিডেশন সম্পর্কিত প্রশ্ন ও উত্তর</h2>
+
+<h3>❓ প্রশ্ন ৭: ডাটাগুলো কোথায় সেভ থাকে? C ভাষার ফাইল হ্যান্ডলিংয়ের সাথে এর কী মিল আছে?</h3>
+<p><strong>উত্তর:</strong><br>
+"প্রোগ্রাম চলাকালীন ডাটা থাকে র‍্যামে অ্যারে হিসেবে (In-Memory State)। আর পার্মানেন্ট করতে ব্রাউজারের <code>localStorage</code>-এ JSON টেক্সট হিসেবে সেভ থাকে। C ভাষায় ফাইল হ্যান্ডলিংয়ে আমরা যেমন <code>fopen()</code>, <code>fprintf()</code>, <code>fscanf()</code> ব্যবহার করি, এখানে <code>localStorage.setItem()</code> ও <code>JSON.stringify()</code> ঠিক একই কাজ করে।"</p>
+
+<hr>
+
+<h2>🔥 ৫. স্যারদের ট্রিকি ও কঠিন প্রশ্ন (Tricky Questions & Smart Answers)</h2>
+
+<h3>❓ ট্রিকি প্রশ্ন ১: "React, Next.js বা MySQL ব্যবহার না করে পিউর ভ্যানিলা JS কেন ব্যবহার করলে?"</h3>
+<div class="box">
+  <strong>🗣️ স্মার্ট উত্তর:</strong><br>
+  "স্যার, আমাদের <strong>CSE 1101</strong> কোর্সের মূল উদ্দেশ্য হলো প্রোগ্রামিংয়ের মৌলিক ভিত্তি—যেমন অ্যারে স্ট্রাকচার, লুপ, কন্ডিশনাল লজিক, ফাংশন ও মেমোরি ম্যানেজমেন্ট গভীরভাবে শেখা। আধুনিক ফ্রেমওয়ার্কগুলো এই মেকানিজমগুলোকে ব্ল্যাক-বক্সের আড়ালে লুকিয়ে রাখে। কোনো রেডিমেড লাইব্রেরি ছাড়া ১০০% পিউর স্ট্রাকচার্ড কোড লিখে আমরা প্রমাণ করেছি যে কম্পিউটার সায়েন্সের কোর ফাউন্ডেশন দিয়েও একটি ফুল-স্কেল এন্টারপ্রাইজ ERP তৈরি করা সম্ভব।"
+</div>
+
+<hr>
+
+<h3>❓ ট্রিকি প্রশ্ন ২: "অ্যারের মাঝখান থেকে একজন ডোনার ডিলিট করলে মেমোরিতে কী ঘটে?"</h3>
+<p><strong>উত্তর:</strong><br>
+"ডিলিট হওয়া ইনডেক্সের পরের সবকটি উপাদান মেমোরিতে এক ঘর করে বামে শিফট হয়ে যায় (Left Shift), যাতে অ্যারেতে কোনো ফাঁকা জায়গা না থাকে এবং মেমোরির ধারাবাহিকতা বজায় থাকে।"</p>
+
+<hr>
+
+<h2>📋 ৬. এক নজরে মুখস্থ করার চার্ট (Quick Revision Sheet)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>বিষয়ের নাম</th>
+      <th>আমাদের প্রজেক্টে প্রয়োগ (JS)</th>
+      <th>C ল্যাঙ্গুয়েজের সমতুল্য কোড</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>ডোনার ডাটা স্টোরেজ</strong></td>
+      <td>Array of Objects (<code>donorDatabase</code>)</td>
+      <td>Array of <code>struct Donor</code></td>
+    </tr>
+    <tr>
+      <td><strong>সার্চ অ্যালগরিদম</strong></td>
+      <td><code>for</code> লুপ লিনিয়ার সার্চ</td>
+      <td><code>for(int i=0; i&lt;N; i++)</code> লিনিয়ার স্ক্যান</td>
+    </tr>
+    <tr>
+      <td><strong>কুলডাউন লজিক</strong></td>
+      <td>মিলিসেকেন্ডের বিয়োগফল</td>
+      <td><code>difftime()</code> বা তারিখের পার্থক্য</td>
+    </tr>
+    <tr>
+      <td><strong>ম্যাচিং টেবিল</strong></td>
+      <td>কী-ভ্যালু অবজেক্ট ম্যাপিং</td>
+      <td>2D Char Array / Switch-Case</td>
+    </tr>
+    <tr>
+      <td><strong>ডাটা সংরক্ষণ</strong></td>
+      <td><code>localStorage</code> JSON String</td>
+      <td>ফাইল হ্যান্ডলিং (<code>fopen</code>, <code>fprintf</code>)</td>
+    </tr>
+    <tr>
+      <td><strong>টাইম কমপ্লেক্সিটি</strong></td>
+      <td>O(N) লিনিয়ার টাইম</td>
+      <td>O(N) লিনিয়ার টাইম</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<p style="text-align:center; font-size:10pt; color:#6B7280;">
+  প্রস্তুতকারী: <strong>মূসা (MD. MUSA ALOM MIM)</strong> &bull; কানাডিয়ান ইউনিভার্সিটি অব বাংলাদেশ &bull; ডিপার্টমেন্ট অব CSE
+</p>
+
+</body>
+</html>
