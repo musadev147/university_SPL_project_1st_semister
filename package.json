@@ -1,24 +1,21 @@
 {
   "name": "hemopulse-blood-donor-erp",
   "version": "1.0.0",
-  "description": "HemoPulse - Ultra-Premium Smart Blood Donor Management & Transfusion Radar ERP engineered for CSE 1101 Structured Programming Language (Canadian University of Bangladesh). Prepared by Musa.",
+  "description": "HemoPulse - Smart Blood Donor Management ERP for Canadian University of Bangladesh (CSE 1101). Prepared by Musa.",
   "main": "home.html",
   "scripts": {
     "start": "python3 -m http.server 4321",
-    "dev": "python3 -m http.server 4321",
-    "build": "echo 'Static assets ready for deployment'"
+    "dev": "python3 -m http.server 4321"
   },
   "keywords": [
     "blood-donor",
     "blood-management",
     "transfusion-radar",
     "cse1101",
-    "structured-programming",
     "canadian-university-of-bangladesh",
     "musa",
-    "vanilla-js",
-    "medical-erp"
+    "vanilla-js"
   ],
-  "author": "Musa (MD. MUSA ALOM MIM) - Canadian University of Bangladesh",
+  "author": "Musa (MD. MUSA ALOM MIM)",
   "license": "MIT"
 }
